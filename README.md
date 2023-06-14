@@ -12,7 +12,7 @@ Via git:
 gem 'squake', git: 'git@github.com:squake-earth/squake-ruby'
 ```
 
-Via rubygems (NOTE: not yet published!):
+Via rubygems:
 
 ```ruby
 # Gemfile
