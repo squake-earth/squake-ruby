@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'English'
+
+unless system('bundle exec rubocop --parallel --ignore-unrecognized-cops')
+  puts $CHILD_STATUS
+  exit(1)
+end
+
+unless system('bundle exec spoom tc')
+  puts $CHILD_STATUS
+  exit(1)
+end
+
+# unless system('bundle exec rake test')
+#   puts $CHILD_STATUS
+#   exit(1)
+# end
+
+puts "\n\n✅ ALL GOOD!"

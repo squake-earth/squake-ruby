@@ -1,0 +1,32 @@
+inherit_from: .rubocop_todo.yml
+
+inherit_gem:
+  rubocop-dbl:
+    - config/dbl.yml
+
+AllCops:
+  TargetRubyVersion: 3.2
+
+Layout/LineLength:
+  Max: 120
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Style/AccessModifierDeclarations:
+  EnforcedStyle: inline
+
+Naming/PredicateName:
+  Enabled: false
+
+Lint/BooleanSymbol:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
