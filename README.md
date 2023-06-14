@@ -98,3 +98,19 @@ Squake::Purchase.cancel(
   id: purchase.id, # required
 )
 ```
+
+## Publishing a new version
+
+Have a Rubygems API key in your `~/.gem/credentials` file.
+
+```shell
+---
+:rubygems_squake: rubygems_xxx
+```
+
+Then run:
+
+```shell
+gem build
+gem push squake-0.1.0.gem --key=rubygems_squake
+```

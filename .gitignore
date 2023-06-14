@@ -13,3 +13,4 @@
 # local setup
 .ruby-version
 Gemfile.lock
+squake-*.gem
