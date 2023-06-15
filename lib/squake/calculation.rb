@@ -11,12 +11,17 @@ module Squake
     sig do
       params(
         client: Squake::Client,
-        items: T::Array[Squake::Model::Items::BaseType],
+        items: T::Array[T.any(Squake::Model::Items::BaseType, T::Hash[T.any(String, Symbol), T.untyped])],
         carbon_unit: String,
         expand: T::Array[String],
       ).returns(Squake::Model::Carbon)
     end
     def self.create(client:, items:, carbon_unit: 'gram', expand: [])
+      # @TODO: add typed objects for all possible items. Until then, we allow either a Hash or a T::Struct
+      items = items.map do |item|
+        item.is_a?(T::Struct) ? item.serialize : item
+      end
+
       result = client.call(
         path: ENDPOINT,
         method: :post,

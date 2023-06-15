@@ -20,7 +20,7 @@ module Squake
     end
     def self.quote(client:, items:, product:, currency: 'EUR', carbon_unit: 'gram', expand: [])
       # @TODO: add typed objects for all possible items. Until then, we allow either a Hash or a T::Struct
-      items.map! do |item|
+      items = items.map do |item|
         item.is_a?(T::Struct) ? item.serialize : item
       end
 
