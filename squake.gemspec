@@ -11,6 +11,8 @@ Gem::Specification.new do |spec|
   spec.email                 = 'oss@squake.earth'
   spec.files                 = Dir[
     'lib/**/*',
+    'sorbet/rbi/dsl/**/*.rbi',
+    'sorbet/rbi/shims/**/*.rbi',
     'LICENSE',
     'README.md',
     'CHANGELOG.md',
