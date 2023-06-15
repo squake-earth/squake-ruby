@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sorbet'
   spec.add_dependency 'sorbet-runtime'
 
+  spec.add_development_dependency 'byebug'
   spec.add_development_dependency 'rubocop-dbl'
   spec.add_development_dependency 'spoom'
   spec.add_development_dependency 'tapioca'
