@@ -141,6 +141,12 @@ Have a Rubygems API key in your `~/.gem/credentials` file.
 Then run:
 
 ```shell
-gem build
-gem push squake-0.1.0.gem --key=rubygems_squake
+bin/release
 ```
+
+which will guide you through the release process:
+
+* create a new git tag from current main
+* create a GitHub release from the tag
+* build the gem locally
+* publish the gem to RubyGems
