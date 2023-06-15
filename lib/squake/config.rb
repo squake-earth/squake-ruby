@@ -1,6 +1,8 @@
 # typed: strict
 # frozen_string_literal: true
 
+require 'logger'
+
 module Squake
   class Config < T::Struct
     extend T::Sig
@@ -10,7 +12,7 @@ module Squake
 
     const :api_key, String
     const :keep_alive_timeout, Integer, default: 30
-    const :logger, Logger, factory: -> { Logger.new($stdout) }
+    const :logger, ::Logger, factory: -> { ::Logger.new($stdout) }
     const :sandbox_mode, T::Boolean, default: true
     const :enforced_api_base, T.nilable(String)
 
