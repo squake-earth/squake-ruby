@@ -12,9 +12,8 @@ then
     exit
 fi
 
-if grep -q ":rubygems_squake:" ~/.gem/credentials; then
-  echo "RubyGem credentials are already set."
-else
+if ! grep -q ":rubygems_squake:" ~/.gem/credentials
+then
   echo "RubyGem credentials are not set. Please configure ~/.gem/credentials."
   exit 1
 fi
