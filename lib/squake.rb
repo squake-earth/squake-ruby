@@ -3,5 +3,6 @@
 
 require 'sorbet-runtime'
 require 'oj'
+require 'net/http'
 
 require_relative 'squake/version'
