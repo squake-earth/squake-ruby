@@ -15,12 +15,12 @@ fi
 if ! grep -q ":rubygems_squake:" ~/.gem/credentials
 then
   echo "RubyGem credentials are not set. Please configure ~/.gem/credentials."
-  exit 1
+  exit
 fi
 
 if [[ `git status --porcelain` ]]; then
   echo "You have uncommitted changes."
-  exit 1;
+  exit
 fi
 
 MAIN_BRANCH="main"
@@ -53,7 +53,7 @@ done
 if [ -z "$RELEASE_TYPE" ]
 then
   echo "No release type selected, exiting."
-  exit 0
+  exit
 fi
 
 LATEST_TAG=${LATEST_TAG#v} # remove the v prefix
