@@ -90,6 +90,8 @@ case $RELEASE_TYPE in
     ;;
 esac
 
+LATEST_VERSION=${LATEST_TAG#v} # tag without the v prefix
+
 echo "This release will be $LATEST_TAG."
 
 git checkout "$MAIN_BRANCH"
@@ -112,16 +114,14 @@ then
   gh release create "$LATEST_TAG" --generate-notes
   release_url=$(gh release create "$LATEST_TAG" --generate-notes)
   gem build
-  gem push squake-"$LATEST_TAG".gem --key=rubygems_squake
-  FINAL_MESSAGE="🎉 Released $LATEST_TAG to RubyGems 🎉 \n$release_url"
+  gem push squake-"$LATEST_VERSION".gem --key=rubygems_squake
+  FINAL_MESSAGE="🎉 Released $LATEST_VERSION to RubyGems 🎉 \n$release_url"
 else
   echo "Aborting."
-  FINAL_MESSAGE="❌ Aborted release $LATEST_TAG ❌"
+  FINAL_MESSAGE="❌ Aborted release $LATEST_VERSION ❌"
 fi
 
 git checkout "$MAIN_BRANCH"
-git branch -D "$RELEASE_BRANCH"
-echo "Back to branch: `git branch --show-current`"
 
 echo $FINAL_MESSAGE
 
