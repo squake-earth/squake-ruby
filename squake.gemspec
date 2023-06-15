@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
     'lib/**/*',
     'LICENSE',
     'README.md',
+    'CHANGELOG.md',
   ]
   spec.homepage              = 'https://github.com/squake-earth/squake-ruby'
   spec.license               = 'MIT'
