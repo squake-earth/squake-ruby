@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.license               = 'MIT'
   spec.required_ruby_version = '>= 2.7'
 
+  spec.add_dependency 'net-http'
   spec.add_dependency 'oj'
   spec.add_dependency 'sorbet'
   spec.add_dependency 'sorbet-runtime'
