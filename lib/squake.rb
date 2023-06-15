@@ -5,4 +5,6 @@ require 'sorbet-runtime'
 require 'oj'
 require 'net/http'
 
-require_relative 'squake/version'
+Dir[File.join(__dir__, './**/*', '*.rb')].each { require(_1) }
+
+module Squake; end
