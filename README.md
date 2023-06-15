@@ -4,20 +4,16 @@ Find the documentation here: [docs](https://docs.squake.earth/).
 
 ## Installation
 
-Via git:
-
-```ruby
-# Gemfile
-
-gem 'squake', git: 'git@github.com:squake-earth/squake-ruby'
-```
-
 Via rubygems:
 
 ```ruby
-# Gemfile
+gem 'squake'
+```
 
-gem 'squake', '~> 0.1.0'
+Via git:
+
+```ruby
+gem 'squake', git: 'git@github.com:squake-earth/squake-ruby'
 ```
 
 ## Auth
@@ -28,7 +24,7 @@ You need a different API Key for production and sandbox.
 ## Functionality
 
 * compute emission values
-* request a price quote (with a product id)
+* request a price quote for your emissions (with a product id)
 * place a purchase order (with a price quote id)
 * get a list of all available products (includes price information)
 
