@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version               = Squake::VERSION
   spec.summary               = 'The industry solution for sustainable travel and logistics.'
   spec.description           = 'This gem provides an interface for the SQUAKE API to calculate and compensate carbon emissions.' # rubocop:disable Layout/LineLength
-  spec.author                = 'Team SQUAKE :rocket:'
+  spec.author                = 'SQUAKE'
   spec.email                 = 'oss@squake.earth'
   spec.files                 = Dir[
     'lib/**/*',
