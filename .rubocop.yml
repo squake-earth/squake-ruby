@@ -30,3 +30,6 @@ Style/HashSyntax:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Naming/BlockForwarding:
+  Enabled: false

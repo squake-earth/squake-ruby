@@ -11,16 +11,16 @@ module Squake
     # rubocop:disable Metrics/ParameterLists,  Layout/LineLength
     sig do
       params(
-        client: Squake::Client,
         pricing: String,
         confirmation_document: T.nilable(T::Hash[Symbol, T.untyped]),
         certificate_document: T.nilable(T::Hash[Symbol, T.untyped]),
         metadata: T.nilable(T::Hash[Symbol, T.untyped]),
         external_reference: String, # used for idempotency, if given, MUST be unique
         expand: T::Array[String],
+        client: Squake::Client,
       ).returns(Squake::Model::Purchase)
     end
-    def self.create(client:, pricing:, confirmation_document: nil, certificate_document: nil, metadata: nil, external_reference: SecureRandom.uuid, expand: [])
+    def self.create(pricing:, confirmation_document: nil, certificate_document: nil, metadata: nil, external_reference: SecureRandom.uuid, expand: [], client: Squake::Client.new)
       result = client.call(
         path: ENDPOINT,
         method: :post,
