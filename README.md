@@ -46,32 +46,7 @@ config = Squake::Config.new(
 client = Squake::Client.new(config: config)
 ```
 
-Calculate emissions
-
-```ruby
-items = [
-  {
-    type: 'flight',
-    methodology: 'ICAO',
-    origin: 'BER',
-    destination: 'SIN',
-    booking_class: 'economy',
-    number_of_travellers: 2,
-    aircraft_type: '350',
-    external_reference: 'booking-id',
-  }
-]
-
-# returns Squake::Model::Carbon
-carbon = Squake::Calculation.create(
-  client: client,        # required
-  items: items,          # required
-  carbon_unit: 'gram',   # optional, default: 'gram', other options: 'kilogram', 'tonne'
-  expand: [],            # optional, default: [], allowed values: 'items' to enrich the response
-)
-```
-
-Calculate emissions and include a price quote:
+Define one or many items to calculate emissions for
 
 ```ruby
 # Find all available item types and methodologies here:
@@ -88,9 +63,32 @@ items = [
     external_reference: 'booking-id',
   }
 ]
+# NOTE: some items are also available as typed objects, found at `lib/squake/model/items/private_jet/squake`
+#       where `private_jet/squake` is the item for type "private_jet" and methodology "squake".
+```
 
-# returns Squake::Model::Pricing
-pricing = Squake::CalculationWithPricing.quote(
+Calculate emissions (without price quote)
+
+```ruby
+context = Squake::Calculation.create(
+  client: client,        # required
+  items: items,          # required
+  carbon_unit: 'gram',   # optional, default: 'gram', other options: 'kilogram', 'tonne'
+  expand: [],            # optional, default: [], allowed values: 'items' to enrich the response
+)
+
+# alias: context.failed?
+if context.success?
+  context.result # Squake::Model::Carbon
+else
+  context.errors # [Squake::Errors::APIErrorResult]
+end
+```
+
+Calculate emissions and include a price quote:
+
+```ruby
+context = Squake::CalculationWithPricing.quote(
   client: client,        # required
   items: items,          # required
   product: 'product-id', # required
@@ -98,6 +96,12 @@ pricing = Squake::CalculationWithPricing.quote(
   carbon_unit: 'gram',   # optional, default: 'gram', other options: 'kilogram', 'tonne'
   expand: [],            # optional, default: [], allowed values: 'items', 'product', 'price' to enrich the response
 )
+
+if context.success?
+  context.result # Squake::Model::Pricing
+else
+  context.errors # [Squake::Errors::APIErrorResult]
+end
 ```
 
 Place a purchase order; by default the library injects a `SecureRandom.uuid` as `external_reference` to ensure idempotency, i.e. you can safely retry the request if it fails.
@@ -106,11 +110,14 @@ Place a purchase order; by default the library injects a `SecureRandom.uuid` as 
 uuid = SecureRandom.uuid
 
 # returns Squake::Model::Purchase
-purchase = Squake::Purchase.create(
+context = Squake::Purchase.create(
   client: client,           # required
   pricing: pricing.id,      # required, from above
   external_reference: uuid, # optional, default: SecureRandom.uuid, used for idempotency, if given, MUST be unique
 )
+
+context.result # Squake::Model::Purchase
+context.errors # [Squake::Errors::APIErrorResult]
 
 # retrieve the purchase later
 Squake::Purchase.retrieve(
