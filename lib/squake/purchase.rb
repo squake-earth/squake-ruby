@@ -18,7 +18,7 @@ module Squake
         metadata: T.nilable(T::Hash[Symbol, T.untyped]),
         external_reference: String, # used for idempotency, if given, MUST be unique
         expand: T::Array[String],
-      ).returns(Squake::Model::Purchase)
+      ).returns(Squake::Return[Squake::Model::Purchase])
     end
     def self.create(client:, pricing:, confirmation_document: nil, certificate_document: nil, metadata: nil, external_reference: SecureRandom.uuid, expand: [])
       result = client.call(
@@ -33,11 +33,19 @@ module Squake
           expand: expand,
         },
       )
-      raise Squake::APIError.new(response: result) unless result.success?
 
-      Squake::Model::Purchase.from_api_response(
-        T.cast(result.body, T::Hash[Symbol, T.untyped]),
-      )
+      if result.success?
+        purchase = Squake::Model::Purchase.from_api_response(
+          T.cast(result.body, T::Hash[Symbol, T.untyped]),
+        )
+        Return.new(result: purchase)
+      else
+        error = Squake::Errors::APIErrorResult.new(
+          code: :"api_error_#{result.code}",
+          detail: result.error_message,
+        )
+        Return.new(errors: [error])
+      end
     end
     # rubocop:enable Metrics/ParameterLists,  Layout/LineLength
 
@@ -45,36 +53,53 @@ module Squake
       params(
         client: Squake::Client,
         id: String,
-      ).returns(T.nilable(Squake::Model::Purchase))
+      ).returns(T.nilable(Squake::Return[Squake::Model::Purchase]))
     end
     def self.retrieve(client:, id:)
       result = client.call(
         path: "#{ENDPOINT}/#{id}",
       )
       return nil if result.code == 404
-      raise Squake::APIError.new(response: result) unless result.success?
 
-      Squake::Model::Purchase.from_api_response(
-        T.cast(result.body, T::Hash[Symbol, T.untyped]),
-      )
+      if result.success?
+        purchase = Squake::Model::Purchase.from_api_response(
+          T.cast(result.body, T::Hash[Symbol, T.untyped]),
+        )
+        Return.new(result: purchase)
+      else
+        error = Squake::Errors::APIErrorResult.new(
+          code: :"api_error_#{result.code}",
+          detail: result.error_message,
+        )
+        Return.new(errors: [error])
+      end
     end
 
     sig do
       params(
         client: Squake::Client,
         id: String,
-      ).returns(T.nilable(Squake::Model::Purchase))
+      ).returns(T.nilable(Squake::Return[Squake::Model::Purchase]))
     end
     def self.cancel(client:, id:)
       result = client.call(
         path: "#{ENDPOINT}/#{id}/cancel",
         method: :post,
       )
-      raise Squake::APIError.new(response: result) unless result.success?
+      return nil if result.code == 404
 
-      Squake::Model::Purchase.from_api_response(
-        T.cast(result.body, T::Hash[Symbol, T.untyped]),
-      )
+      if result.success?
+        purchase = Squake::Model::Purchase.from_api_response(
+          T.cast(result.body, T::Hash[Symbol, T.untyped]),
+        )
+        Return.new(result: purchase)
+      else
+        error = Squake::Errors::APIErrorResult.new(
+          code: :"api_error_#{result.code}",
+          detail: result.error_message,
+        )
+        Return.new(errors: [error])
+      end
     end
   end
 end
