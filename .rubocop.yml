@@ -30,3 +30,6 @@ Style/HashSyntax:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/MethodLength:
+  CountAsOne: ['array', 'heredoc', 'method_call']
