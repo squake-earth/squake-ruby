@@ -8,14 +8,14 @@ module Squake
 
       const :id, String
       const :title, String
+      const :certifications, T::Array[String], default: []
 
       sig { params(response_body: T::Hash[Symbol, T.untyped]).returns(Squake::Model::Product) }
       def self.from_api_response(response_body)
-        product = response_body.fetch(:product, {})
-
         Squake::Model::Product.new(
-          id: product.fetch(:id),
-          title: product.fetch(:title),
+          id: response_body.fetch(:id),
+          title: response_body.fetch(:title),
+          certifications: response_body.fetch(:certifications, []),
         )
       end
     end
