@@ -26,7 +26,7 @@ module Squake
         path: ENDPOINT,
         method: :post,
         params: {
-          items: items.map(&:serialize),
+          items: items,
           carbon_unit: carbon_unit,
           expand: expand,
         },
