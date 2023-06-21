@@ -10,11 +10,11 @@ module Squake
     DEFAULT_BASE_URL = T.let('https://api.squake.earth', String)
     SANDBOX_BASE_URL = T.let('https://api.sandbox.squake.earth', String)
 
-    const :api_key, String
-    const :keep_alive_timeout, Integer, default: 30
-    const :logger, ::Logger, factory: -> { ::Logger.new($stdout) }
-    const :sandbox_mode, T::Boolean, default: true
-    const :enforced_api_base, T.nilable(String)
+    prop :api_key, T.nilable(String)
+    prop :keep_alive_timeout, Integer, default: 30
+    prop :logger, ::Logger, factory: -> { ::Logger.new($stdout) }
+    prop :sandbox_mode, T::Boolean, default: true
+    prop :enforced_api_base, T.nilable(String)
 
     sig { returns(String) }
     def api_base

@@ -10,10 +10,10 @@ Via rubygems:
 gem 'squake'
 ```
 
-Via git:
+Test the latest version via git:
 
 ```ruby
-gem 'squake', git: 'git@github.com:squake-earth/squake-ruby'
+gem 'squake', git: 'git@github.com:squake-earth/squake-ruby', branch: :main
 ```
 
 ## Auth
@@ -30,7 +30,9 @@ You need a different API Key for production and sandbox.
 
 ## Usage
 
-Initialize the client:
+### Initialize the client
+
+either explicitly anywhere in the app
 
 ```ruby
 config = Squake::Config.new(
@@ -46,11 +48,27 @@ config = Squake::Config.new(
 client = Squake::Client.new(config: config)
 ```
 
-Define one or many items to calculate emissions for
+or once globally in e.g. an initializer
 
 ```ruby
-# Find all available item types and methodologies here:
-#   https://docs-v2.squake.earth/group/endpoint-calculations
+Squake.configure do |config|
+  config.api_key = ENV.fetch('SQUAKE_API_KEY') # optional if ENV var `SQUAKE_API_KEY` is set
+  config.sandbox_mode = true                   # set to `false` for production
+  config.keep_alive_timeout = 30               # optional, default: 30
+  config.logger = Logger.new($stdout)          # Set this to `Rails.logger` when using Rails
+  config.enforced_api_base = nil               # for testing to e.g. point to a local server
+end
+```
+
+If you have the API Key in an ENV var named `SQUAKE_API_KEY`, you don't need any further config.
+
+### Define items you want emissions to be computed
+
+Find all available item types and methodologies in the [docs](https://docs-v2.squake.earth/group/endpoint-calculations).
+
+```ruby
+# NOTE: some items are also available as typed objects, found at `lib/squake/model/items/**/*.rb`
+#       where `.../items/private_jet/squake` is the item for type "private_jet" and methodology "squake".
 items = [
   {
     type: 'flight',
@@ -61,13 +79,18 @@ items = [
     number_of_travellers: 2,
     aircraft_type: '350',
     external_reference: 'booking-id',
-  }
+  },
+  Squake::Model::Items::PrivateJet::Squake.new(
+    origin: 'SIN',
+    destination: 'HND',
+    external_reference: 'my-booking-id',
+    identifier: 'P180',
+    identifier_kind: 'ICAO',
+  ),
 ]
-# NOTE: some items are also available as typed objects, found at `lib/squake/model/items/private_jet/squake`
-#       where `private_jet/squake` is the item for type "private_jet" and methodology "squake".
 ```
 
-Calculate emissions (without price quote)
+### Calculate emissions (without price quote)
 
 ```ruby
 context = Squake::Calculation.create(
@@ -85,7 +108,7 @@ else
 end
 ```
 
-Calculate emissions and include a price quote:
+### Calculate emissions and include a price quote
 
 ```ruby
 context = Squake::CalculationWithPricing.quote(
@@ -104,7 +127,9 @@ else
 end
 ```
 
-Place a purchase order; by default the library injects a `SecureRandom.uuid` as `external_reference` to ensure idempotency, i.e. you can safely retry the request if it fails.
+### Place a purchase order
+
+by default the library injects a `SecureRandom.uuid` as `external_reference` to ensure idempotency, i.e. you can safely retry the request if it fails.
 
 ```ruby
 uuid = SecureRandom.uuid
@@ -140,22 +165,10 @@ Please commit small and focused PRs with descriptive commit messages. If you are
 
 ## Publishing a new version
 
-Have a Rubygems API key in your `~/.gem/credentials` file.
-
-```shell
----
-:rubygems_squake: rubygems_xxx
-```
-
-Then run:
+run
 
 ```shell
 bin/release
 ```
 
-which will guide you through the release process:
-
-* create a new git tag from current main
-* create a GitHub release from the tag
-* build the gem locally
-* publish the gem to RubyGems
+which will guide you through the release process.

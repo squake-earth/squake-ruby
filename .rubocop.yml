@@ -31,5 +31,8 @@ Style/HashSyntax:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Naming/BlockForwarding:
+  Enabled: false
+
 Metrics/MethodLength:
   CountAsOne: ['array', 'heredoc', 'method_call']
