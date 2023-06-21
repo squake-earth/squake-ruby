@@ -11,12 +11,12 @@ module Squake
 
     sig do
       params(
-        client: Squake::Client,
         locale: String,
         product_id: T.nilable(String),
+        client: Squake::Client,
       ).returns(T::Array[Squake::Model::Product])
     end
-    def self.get(client:, locale: DEFAULT_LOCALE, product_id: nil)
+    def self.get(locale: DEFAULT_LOCALE, product_id: nil, client: Squake::Client.new)
       path = product_id.nil? ? ENDPOINT : "#{ENDPOINT}/#{product_id}"
 
       result = client.call(

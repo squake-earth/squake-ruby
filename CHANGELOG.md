@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+* added `Squake.configure`
+* introduced global config allowig to omit the `client` from all service calls
+
 ## [0.2.0] - 2023-06-15
 
 ### Added

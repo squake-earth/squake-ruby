@@ -14,9 +14,9 @@ module Squake
       )
     end
 
-    sig { params(config: Squake::Config).void }
-    def initialize(config:)
-      @config = config
+    sig { params(config: T.nilable(Squake::Config)).void }
+    def initialize(config: nil)
+      @config = T.let(config || T.must(Squake.configuration), Squake::Config)
     end
 
     sig do
@@ -53,7 +53,7 @@ module Squake
     end
     private def execute_request(method:, path:, headers: {}, params: nil, api_base: nil, api_key: nil)
       api_base ||= @config.api_base
-      api_key ||= @config.api_key
+      api_key ||= T.must(@config.api_key)
 
       body_params = nil
       query_params = nil

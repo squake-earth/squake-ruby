@@ -30,7 +30,9 @@ You need a different API Key for production and sandbox.
 
 ## Usage
 
-Initialize the client:
+### Initialize the client
+
+either explicitly anywhere in the app
 
 ```ruby
 config = Squake::Config.new(
@@ -46,7 +48,21 @@ config = Squake::Config.new(
 client = Squake::Client.new(config: config)
 ```
 
-Calculate emissions
+or once globally in e.g. an initializer
+
+```ruby
+Squake.configure do |config|
+  config.api_key = ENV.fetch('SQUAKE_API_KEY') # optional if ENV var `SQUAKE_API_KEY` is set
+  config.sandbox_mode = true                   # set to `false` for production
+  config.keep_alive_timeout = 30               # optional, default: 30
+  config.logger = Logger.new($stdout)          # Set this to `Rails.logger` when using Rails
+  config.enforced_api_base = nil               # for testing to e.g. point to a local server
+end
+```
+
+If you have the API Key in an ENV var named `SQUAKE_API_KEY`, you don't need any further config.
+
+### Calculate emissions
 
 ```ruby
 items = [
@@ -71,7 +87,7 @@ carbon = Squake::Calculation.create(
 )
 ```
 
-Calculate emissions and include a price quote:
+### Calculate emissions and include a price quote
 
 ```ruby
 # Find all available item types and methodologies here:
@@ -100,7 +116,9 @@ pricing = Squake::CalculationWithPricing.quote(
 )
 ```
 
-Place a purchase order; by default the library injects a `SecureRandom.uuid` as `external_reference` to ensure idempotency, i.e. you can safely retry the request if it fails.
+### Place a purchase order
+
+by default the library injects a `SecureRandom.uuid` as `external_reference` to ensure idempotency, i.e. you can safely retry the request if it fails.
 
 ```ruby
 uuid = SecureRandom.uuid
