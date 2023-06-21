@@ -16,7 +16,7 @@ module Squake
         carbon_unit: String,
         expand: T::Array[String],
         client: Squake::Client,
-      ).returns(Squake::Model::Pricing)
+      ).returns(Squake::Return[Squake::Model::Pricing])
     end
     def self.quote(items:, product:, currency: 'EUR', carbon_unit: 'gram', expand: [], client: Squake::Client.new)
       # @TODO: add typed objects for all possible items. Until then, we allow either a Hash or a T::Struct
@@ -35,11 +35,19 @@ module Squake
           expand: expand,
         },
       )
-      raise Squake::APIError.new(response: result) unless result.success?
 
-      Squake::Model::Pricing.from_api_response(
-        T.cast(result.body, T::Hash[Symbol, T.untyped]),
-      )
+      if result.success?
+        pricing = Squake::Model::Pricing.from_api_response(
+          T.cast(result.body, T::Hash[Symbol, T.untyped]),
+        )
+        Return.new(result: pricing)
+      else
+        error = Squake::Errors::APIErrorResult.new(
+          code: :"api_error_#{result.code}",
+          detail: result.error_message,
+        )
+        Return.new(errors: [error])
+      end
     end
   end
 end

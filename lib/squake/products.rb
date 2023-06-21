@@ -14,7 +14,7 @@ module Squake
         locale: String,
         product_id: T.nilable(String),
         client: Squake::Client,
-      ).returns(T::Array[Squake::Model::Product])
+      ).returns(Squake::Return[T::Array[Squake::Model::Product]])
     end
     def self.get(locale: DEFAULT_LOCALE, product_id: nil, client: Squake::Client.new)
       path = product_id.nil? ? ENDPOINT : "#{ENDPOINT}/#{product_id}"
@@ -26,10 +26,18 @@ module Squake
           locale: locale,
         },
       )
-      raise Squake::APIError.new(response: result) unless result.success?
 
-      Array(result.body).map do |product_data|
-        Squake::Model::Product.from_api_response({ product: product_data })
+      if result.success?
+        products = Array(result.body).map do |product_data|
+          Squake::Model::Product.from_api_response({ product: product_data })
+        end
+        Return.new(result: products)
+      else
+        error = Squake::Errors::APIErrorResult.new(
+          code: :"api_error_#{result.code}",
+          detail: result.error_message,
+        )
+        Return.new(errors: [error])
       end
     end
   end

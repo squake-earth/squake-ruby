@@ -14,7 +14,7 @@ module Squake
         carbon_unit: String,
         expand: T::Array[String],
         client: Squake::Client,
-      ).returns(Squake::Model::Carbon)
+      ).returns(Squake::Return[Squake::Model::Carbon])
     end
     def self.create(items:, carbon_unit: 'gram', expand: [], client: Squake::Client.new)
       # @TODO: add typed objects for all possible items. Until then, we allow either a Hash or a T::Struct
@@ -31,11 +31,19 @@ module Squake
           expand: expand,
         },
       )
-      raise Squake::APIError.new(response: result) unless result.success?
 
-      Squake::Model::Carbon.from_api_response(
-        T.cast(result.body, T::Hash[Symbol, T.untyped]),
-      )
+      if result.success?
+        carbon = Squake::Model::Carbon.from_api_response(
+          T.cast(result.body, T::Hash[Symbol, T.untyped]),
+        )
+        Return.new(result: carbon)
+      else
+        error = Squake::Errors::APIErrorResult.new(
+          code: :"api_error_#{result.code}",
+          detail: result.error_message,
+        )
+        Return.new(errors: [error])
+      end
     end
   end
 end

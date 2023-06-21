@@ -10,10 +10,10 @@ Via rubygems:
 gem 'squake'
 ```
 
-Via git:
+Test the latest version via git:
 
 ```ruby
-gem 'squake', git: 'git@github.com:squake-earth/squake-ruby'
+gem 'squake', git: 'git@github.com:squake-earth/squake-ruby', branch: :main
 ```
 
 ## Auth
@@ -62,9 +62,13 @@ end
 
 If you have the API Key in an ENV var named `SQUAKE_API_KEY`, you don't need any further config.
 
-### Calculate emissions
+### Define items you want emissions to be computed
+
+Find all available item types and methodologies in the [docs](https://docs-v2.squake.earth/group/endpoint-calculations).
 
 ```ruby
+# NOTE: some items are also available as typed objects, found at `lib/squake/model/items/**/*.rb`
+#       where `.../items/private_jet/squake` is the item for type "private_jet" and methodology "squake".
 items = [
   {
     type: 'flight',
@@ -75,38 +79,39 @@ items = [
     number_of_travellers: 2,
     aircraft_type: '350',
     external_reference: 'booking-id',
-  }
+  },
+  Squake::Model::Items::PrivateJet::Squake.new(
+    origin: 'SIN',
+    destination: 'HND',
+    external_reference: 'my-booking-id',
+    identifier: 'P180',
+    identifier_kind: 'ICAO',
+  ),
 ]
+```
 
-# returns Squake::Model::Carbon
-carbon = Squake::Calculation.create(
+### Calculate emissions (without price quote)
+
+```ruby
+context = Squake::Calculation.create(
   client: client,        # required
   items: items,          # required
   carbon_unit: 'gram',   # optional, default: 'gram', other options: 'kilogram', 'tonne'
   expand: [],            # optional, default: [], allowed values: 'items' to enrich the response
 )
+
+# alias: context.failed?
+if context.success?
+  context.result # Squake::Model::Carbon
+else
+  context.errors # [Squake::Errors::APIErrorResult]
+end
 ```
 
 ### Calculate emissions and include a price quote
 
 ```ruby
-# Find all available item types and methodologies here:
-#   https://docs-v2.squake.earth/group/endpoint-calculations
-items = [
-  {
-    type: 'flight',
-    methodology: 'ICAO',
-    origin: 'BER',
-    destination: 'SIN',
-    booking_class: 'economy',
-    number_of_travellers: 2,
-    aircraft_type: '350',
-    external_reference: 'booking-id',
-  }
-]
-
-# returns Squake::Model::Pricing
-pricing = Squake::CalculationWithPricing.quote(
+context = Squake::CalculationWithPricing.quote(
   client: client,        # required
   items: items,          # required
   product: 'product-id', # required
@@ -114,6 +119,12 @@ pricing = Squake::CalculationWithPricing.quote(
   carbon_unit: 'gram',   # optional, default: 'gram', other options: 'kilogram', 'tonne'
   expand: [],            # optional, default: [], allowed values: 'items', 'product', 'price' to enrich the response
 )
+
+if context.success?
+  context.result # Squake::Model::Pricing
+else
+  context.errors # [Squake::Errors::APIErrorResult]
+end
 ```
 
 ### Place a purchase order
@@ -124,11 +135,14 @@ by default the library injects a `SecureRandom.uuid` as `external_reference` to 
 uuid = SecureRandom.uuid
 
 # returns Squake::Model::Purchase
-purchase = Squake::Purchase.create(
+context = Squake::Purchase.create(
   client: client,           # required
   pricing: pricing.id,      # required, from above
   external_reference: uuid, # optional, default: SecureRandom.uuid, used for idempotency, if given, MUST be unique
 )
+
+context.result # Squake::Model::Purchase
+context.errors # [Squake::Errors::APIErrorResult]
 
 # retrieve the purchase later
 Squake::Purchase.retrieve(
@@ -151,22 +165,10 @@ Please commit small and focused PRs with descriptive commit messages. If you are
 
 ## Publishing a new version
 
-Have a Rubygems API key in your `~/.gem/credentials` file.
-
-```shell
----
-:rubygems_squake: rubygems_xxx
-```
-
-Then run:
+run
 
 ```shell
 bin/release
 ```
 
-which will guide you through the release process:
-
-* create a new git tag from current main
-* create a GitHub release from the tag
-* build the gem locally
-* publish the gem to RubyGems
+which will guide you through the release process.

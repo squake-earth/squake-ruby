@@ -7,8 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
 * added `Squake.configure`
 * introduced global config allowig to omit the `client` from all service calls
+
+### Changed
+
+* All public services now return a `Return` class that contains the actual data or an error object. This replaces the throwing of errors for control-flow.
+
+## [0.2.1 - 0.2.4]
+
+### Fixed
+
+* Boilerplate bugs
 
 ## [0.2.0] - 2023-06-15
 
