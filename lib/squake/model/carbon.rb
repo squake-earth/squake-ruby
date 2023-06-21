@@ -15,8 +15,8 @@ module Squake
       sig { params(response_body: T::Hash[Symbol, T.untyped]).returns(Squake::Model::Carbon) }
       def self.from_api_response(response_body)
         Squake::Model::Carbon.new(
-          quantity: BigDecimal(String(response_body.fetch(:quantity))),
-          unit: CarbonUnit.deserialize(response_body.fetch(:unit)),
+          quantity: BigDecimal(String(response_body.fetch(:carbon_quantity))),
+          unit: CarbonUnit.deserialize(response_body.fetch(:carbon_unit)),
           items: response_body.fetch(:items, nil),
         )
       end
