@@ -62,6 +62,13 @@ end
 
 If you have the API Key in an ENV var named `SQUAKE_API_KEY`, you don't need any further config.
 
+### Fetch available products
+
+```ruby
+context = Squake::Products.get
+products = context.result # [Squake::Model::Product]
+```
+
 ### Define items you want emissions to be computed
 
 Find all available item types and methodologies in the [docs](https://docs-v2.squake.earth/group/endpoint-calculations).
