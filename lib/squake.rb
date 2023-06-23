@@ -5,6 +5,11 @@ require 'sorbet-runtime'
 require 'oj'
 require 'net/http'
 
+Oj.default_options = {
+  mode: :compat, # required to dump hashes with symbol-keys
+  symbol_keys: true,
+}
+
 Dir[File.join(__dir__, './**/*', '*.rb')].each { require(_1) }
 
 module Squake
@@ -32,7 +37,4 @@ module Squake
   end
 end
 
-Oj.default_options = {
-  mode: :compat, # required to dump hashes with symbol-keys
-  symbol_keys: true,
-}
+Squake.configure(&:itself) unless ENV['SQUAKE_API_KEY'].nil?

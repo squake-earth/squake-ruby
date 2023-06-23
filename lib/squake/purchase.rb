@@ -51,11 +51,11 @@ module Squake
 
     sig do
       params(
-        client: Squake::Client,
         id: String,
+        client: Squake::Client,
       ).returns(T.nilable(Squake::Return[Squake::Model::Purchase]))
     end
-    def self.retrieve(client:, id:)
+    def self.retrieve(id:, client: Squake::Client.new)
       result = client.call(
         path: "#{ENDPOINT}/#{id}",
       )
@@ -77,11 +77,11 @@ module Squake
 
     sig do
       params(
-        client: Squake::Client,
         id: String,
+        client: Squake::Client,
       ).returns(T.nilable(Squake::Return[Squake::Model::Purchase]))
     end
-    def self.cancel(client:, id:)
+    def self.cancel(id:, client: Squake::Client.new)
       result = client.call(
         path: "#{ENDPOINT}/#{id}/cancel",
         method: :post,

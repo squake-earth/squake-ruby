@@ -62,6 +62,13 @@ end
 
 If you have the API Key in an ENV var named `SQUAKE_API_KEY`, you don't need any further config.
 
+### Fetch available products
+
+```ruby
+context = Squake::Products.get
+products = context.result # [Squake::Model::Product]
+```
+
 ### Define items you want emissions to be computed
 
 Find all available item types and methodologies in the [docs](https://docs-v2.squake.earth/group/endpoint-calculations).
@@ -94,10 +101,10 @@ items = [
 
 ```ruby
 context = Squake::Calculation.create(
-  client: client,        # required
   items: items,          # required
   carbon_unit: 'gram',   # optional, default: 'gram', other options: 'kilogram', 'tonne'
   expand: [],            # optional, default: [], allowed values: 'items' to enrich the response
+  client: client,        # optional
 )
 
 # alias: context.failed?
@@ -112,12 +119,12 @@ end
 
 ```ruby
 context = Squake::CalculationWithPricing.quote(
-  client: client,        # required
   items: items,          # required
   product: 'product-id', # required
   currency: 'EUR',       # optional, default: 'EUR'
   carbon_unit: 'gram',   # optional, default: 'gram', other options: 'kilogram', 'tonne'
   expand: [],            # optional, default: [], allowed values: 'items', 'product', 'price' to enrich the response
+  client: client,        # optional
 )
 
 if context.success?
@@ -136,9 +143,9 @@ uuid = SecureRandom.uuid
 
 # returns Squake::Model::Purchase
 context = Squake::Purchase.create(
-  client: client,           # required
   pricing: pricing.id,      # required, from above
   external_reference: uuid, # optional, default: SecureRandom.uuid, used for idempotency, if given, MUST be unique
+  client: client,           # optional
 )
 
 context.result # Squake::Model::Purchase
@@ -146,14 +153,14 @@ context.errors # [Squake::Errors::APIErrorResult]
 
 # retrieve the purchase later
 Squake::Purchase.retrieve(
-  client: client,  # required
   id: purchase.id, # required
+  client: client,  # optional
 )
 
 # within 14 days, you can cancel the purchase worry-free
 Squake::Purchase.cancel(
-  client: client,  # required
   id: purchase.id, # required
+  client: client,  # optional
 )
 ```
 
