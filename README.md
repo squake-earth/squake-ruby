@@ -2,6 +2,8 @@
 
 Find the documentation here: [docs](https://docs.squake.earth/).
 
+This gem follows SemVer, however only after a stable release 1.0.0 is made.
+
 ## Installation
 
 Via rubygems:
