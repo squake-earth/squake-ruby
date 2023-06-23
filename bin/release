@@ -111,7 +111,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "Releasing..."
   git push --tags
-  gh release create "$LATEST_TAG" --generate-notes
   release_url=$(gh release create "$LATEST_TAG" --generate-notes)
   gem build
   gem push squake-"$LATEST_VERSION".gem --key=rubygems_squake
