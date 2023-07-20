@@ -16,9 +16,12 @@ module Squake
         carbon_unit: String,
         expand: T::Array[String],
         client: Squake::Client,
+        request_id: T.nilable(String),
       ).returns(Squake::Return[Squake::Model::Pricing])
     end
-    def self.quote(items:, product:, currency: 'EUR', carbon_unit: 'gram', expand: [], client: Squake::Client.new)
+    def self.quote(
+      items:, product:, currency: 'EUR', carbon_unit: 'gram', expand: [], client: Squake::Client.new, request_id: nil
+    )
       # @TODO: add typed objects for all possible items. Until then, we allow either a Hash or a T::Struct
       items = items.map do |item|
         item.is_a?(T::Struct) ? item.serialize : item
@@ -27,6 +30,7 @@ module Squake
       result = client.call(
         path: ENDPOINT,
         method: :post,
+        headers: { 'X-Request-Id' => request_id }.compact,
         params: {
           items: items,
           product: product,
