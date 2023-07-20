@@ -14,14 +14,16 @@ module Squake
         product_id: T.nilable(String),
         locale: String,
         client: Squake::Client,
+        request_id: T.nilable(String),
       ).returns(Squake::Return[T::Array[Squake::Model::Product]])
     end
-    def self.get(product_id: nil, locale: DEFAULT_LOCALE, client: Squake::Client.new)
+    def self.get(product_id: nil, locale: DEFAULT_LOCALE, client: Squake::Client.new, request_id: nil)
       path = product_id.nil? ? ENDPOINT : "#{ENDPOINT}/#{product_id}"
 
       result = client.call(
         path: path,
         method: :get,
+        headers: { 'X-Request-Id' => request_id }.compact,
         params: {
           locale: locale,
         },

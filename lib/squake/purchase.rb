@@ -8,7 +8,6 @@ module Squake
 
     ENDPOINT = T.let('/v2/purchases', String)
 
-    # rubocop:disable Metrics/ParameterLists,  Layout/LineLength
     sig do
       params(
         pricing: String,
@@ -18,12 +17,17 @@ module Squake
         external_reference: String, # used for idempotency, if given, MUST be unique
         expand: T::Array[String],
         client: Squake::Client,
+        request_id: T.nilable(String),
       ).returns(Squake::Return[Squake::Model::Purchase])
     end
-    def self.create(pricing:, confirmation_document: nil, certificate_document: nil, metadata: nil, external_reference: SecureRandom.uuid, expand: [], client: Squake::Client.new)
+    def self.create(
+      pricing:, confirmation_document: nil, certificate_document: nil, metadata: nil,
+      external_reference: SecureRandom.uuid, expand: [], client: Squake::Client.new, request_id: nil
+    )
       result = client.call(
         path: ENDPOINT,
         method: :post,
+        headers: { 'X-Request-Id' => request_id }.compact,
         params: {
           pricing: pricing,
           confirmation_document: confirmation_document,
@@ -47,7 +51,6 @@ module Squake
         Return.new(errors: [error])
       end
     end
-    # rubocop:enable Metrics/ParameterLists,  Layout/LineLength
 
     sig do
       params(
