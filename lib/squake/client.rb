@@ -66,7 +66,7 @@ module Squake
         raise "Unrecognized HTTP method: #{method}. Expected one of: get, head, delete, post"
       end
 
-      request_headers(api_key).merge!(headers)
+      headers = request_headers(api_key).merge!(headers)
       query = query_params ? Util.encode_parameters(query_params) : nil
       body = body_params ? ::Oj.dump(body_params) : nil
       sanitized_path = path[0] == '/' ? path : "/#{path}"
