@@ -94,7 +94,7 @@ LATEST_VERSION=${LATEST_TAG#v} # tag without the v prefix
 
 echo "This release will be $LATEST_TAG."
 
-local gem_version=$(grep VERSION lib/squake/version.rb | awk -F\' '{print $2}')
+gem_version=$(grep VERSION lib/squake/version.rb | awk -F\' '{print $2}')
 # verify that LATEST_VERSION matches gem_version
 if [ "$LATEST_VERSION" != "$gem_version" ]; then
   echo "The gem version ($gem_version) does not match the latest tag ($LATEST_VERSION)."
