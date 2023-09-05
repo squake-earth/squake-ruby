@@ -28,7 +28,7 @@ module Squake
 
     sig { returns(T::Boolean) }
     def success?
-      present?(@result)
+      blank?(@errors)
     end
 
     sig { returns(T::Boolean) }
