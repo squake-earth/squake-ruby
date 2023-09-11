@@ -85,12 +85,15 @@ module Squake
       )
 
       # https://stripe.com/blog/canonical-log-lines
-      canonical_request_line = <<~TXT
-        Request started
-          http_method=#{request.method}
-          http_path=#{request.path}
-          http_headers=#{request.to_hash}
-      TXT
+      # https://opentelemetry.io/docs/instrumentation/ruby/manual/#add-semantic-attributes
+      canonical_request_line = Oj.dump(
+        {
+          label: 'Request started',
+          'http.method': request.method,
+          'http.route': request.path,
+          'http.headers': request.to_hash,
+        },
+      )
       canonical_request_line.gsub!(api_key, 'API_KEY_REDACTED')
       @config.logger.info(canonical_request_line)
 
