@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Squake::Products, vcr: true do # rubocop:RSpec/MetadataStyle: disable
+RSpec.describe Squake::Products, :vcr do
   let(:product_id) { 'product_026c41' }
 
   describe '#get' do

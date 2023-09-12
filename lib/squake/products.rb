@@ -30,7 +30,7 @@ module Squake
       )
 
       if result.success?
-        products = T.cast([result.body].flatten, T::Array[T::Hash[Symbol, T.untyped]]).map do |product_data|
+        products = [result.body].flatten.map do |product_data|
           Squake::Model::Product.from_api_response(product_data)
         end
         Return.new(result: products)
