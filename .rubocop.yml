@@ -16,7 +16,7 @@ RSpec/ExampleLength:
 Layout/LineLength:
   Max: 120
 
-Layout/ClassLength:
+Metrics/ClassLength:
   Max: 120
 
 Style/IfUnlessModifier:
