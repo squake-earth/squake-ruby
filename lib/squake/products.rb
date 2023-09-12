@@ -2,7 +2,6 @@
 # frozen_string_literal: true
 
 # https://docs-v2.squake.earth/operation/operation-get-products
-
 module Squake
   class Products
     extend T::Sig

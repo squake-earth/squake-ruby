@@ -11,7 +11,6 @@ module Squake
       T.any(
         T::Array[T::Hash[Symbol, T.untyped]],
         T::Hash[Symbol, T.untyped],
-        String,
       )
     end
 
