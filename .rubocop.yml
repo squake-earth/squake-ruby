@@ -7,6 +7,12 @@ inherit_gem:
 AllCops:
   TargetRubyVersion: 3.2
 
+RSpec/MultipleExpectations:
+  Max: 3
+
+RSpec/ExampleLength:
+  Max: 10
+
 Layout/LineLength:
   Max: 120
 
