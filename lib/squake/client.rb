@@ -121,7 +121,7 @@ module Squake
       ::Oj.load(result_body, symbol_keys: true)
     rescue ::Oj::ParseError, TypeError, JSON::ParserError, EncodingError => e
       # in case of an error, Squake's response body is HTML not JSON
-      { 'error' => { 'message' => e.message, 'body' => result_body } }
+      { error: { 'message' => e.message, 'body' => result_body } }
     end
 
     sig { params(uri: URI::Generic).returns(Net::HTTP) }

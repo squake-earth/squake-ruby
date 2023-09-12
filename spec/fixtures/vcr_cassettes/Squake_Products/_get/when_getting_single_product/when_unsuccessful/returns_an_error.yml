@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.sandbox.squake.earth/v2/products/invalid_id?locale=en
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer MOCK_API_KEY
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Tue, 12 Sep 2023 15:21:03 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Squake-Request-Id:
+      - req_sandbox_73db2dbd-17a6-4e69-af79-8469e77d45c4
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - req_sandbox_73db2dbd-17a6-4e69-af79-8469e77d45c4
+      X-Runtime:
+      - '0.011759'
+      Vary:
+      - Origin
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 805923556e705b0d-VIE
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Tue, 12 Sep 2023 15:21:03 GMT
+recorded_with: VCR 6.2.0

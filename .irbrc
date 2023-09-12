@@ -1,1 +1,1 @@
-require_relative './lib/squake' # rubocop:disable Packaging/RequireRelativeHardcodingLib
+require_relative 'lib/squake' # rubocop:disable Packaging/RequireRelativeHardcodingLib
