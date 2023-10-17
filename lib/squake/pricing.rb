@@ -21,7 +21,8 @@ module Squake
       ).returns(Squake::Return[Squake::Model::Pricing])
     end
     def self.quote(
-      product_id:, fixed_total: nil, currency: 'EUR', carbon_quantity: nil, carbon_unit: 'gram', expand: [], client: Squake::Client.new, request_id: nil
+      product_id:, fixed_total: nil, currency: 'EUR', carbon_quantity: nil, carbon_unit: 'gram',
+      expand: [], client: Squake::Client.new, request_id: nil
     )
 
       result = client.call(
