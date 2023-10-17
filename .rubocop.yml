@@ -19,6 +19,9 @@ Layout/LineLength:
 Metrics/ClassLength:
   Max: 120
 
+Metrics/AbcSize:
+  Max: 37
+
 Style/IfUnlessModifier:
   Enabled: false
 
