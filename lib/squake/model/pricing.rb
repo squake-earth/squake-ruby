@@ -49,7 +49,7 @@ module Squake
         Squake::Model::Pricing.new(
           id: response_body.fetch(:id),
           items: items,
-          carbon_quantity: response_body.fetch(:carbon_quantity).to_d,
+          carbon_quantity: BigDecimal(response_body.fetch(:carbon_quantity).to_s),
           carbon_unit: response_body.fetch(:carbon_unit),
           payment_link: response_body.fetch(:payment_link, nil),
           price: price,

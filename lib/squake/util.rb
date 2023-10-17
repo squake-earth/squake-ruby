@@ -11,13 +11,15 @@ module Squake
     # `&`).
     sig { params(params: T::Hash[Symbol, String]).returns(String) }
     def self.encode_parameters(params)
-      params.map { |k, v| "#{url_encode(k.to_s)}=#{url_encode(v)}" }.join('&')
+      params.map do |k, v|
+        "#{url_encode(k.to_s)}=#{url_encode(v.to_s)}" unless v.nil?
+      end.join('&')
     end
 
     # Encodes a string in a way that makes it suitable for use in a set of
     # query parameters in a URI or in a set of form parameters in a request
     # body.
-    sig { params(key: String).returns(String) }
+    sig { params(key: T.nilable(String)).returns(String) }
     def self.url_encode(key)
       CGI.escape(key.to_s).
         # Don't use strict form encoding by changing the square bracket control
