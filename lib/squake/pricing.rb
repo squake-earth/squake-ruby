@@ -1,8 +1,8 @@
 # typed: strict
 # frozen_string_literal: true
 
-# https://docs-v2.squake.earth/group/endpoint-combined-calculation-pricing
 module Squake
+  # https://docs-v2.squake.earth/group/endpoint-pricing
   class Pricing
     extend T::Sig
 
