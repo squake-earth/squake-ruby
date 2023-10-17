@@ -117,6 +117,44 @@ else
 end
 ```
 
+### Get a price quote alone
+
+#### For a given carbon quantity
+
+```ruby
+Squake::Pricing.quote(
+  client: squake_client, # optional
+  carbon_quantity: 1000, # required
+  carbon_unit: 'kilogram', # optional, default: 'gram', other options: 'kilogram', 'tonne'
+  product_id: 'some_product_id', # required
+  expand: [], # optional, default: [], allowed values: 'product', 'price' to enrich the response
+)
+
+if context.success?
+  context.result # Squake::Model::Pricing
+else
+  context.errors # [Squake::Errors::APIErrorResult]
+end
+```
+
+#### For a given fixed total
+
+```ruby
+context = Squake::Pricing.quote(
+  client: squake_client, # optional
+  fixed_total: 1000, # required
+  currency: 'USD', # optional, default: 'EUR'
+  product_id: 'some_product_id', # required
+  expand: [], # optional, default: [], allowed values: 'product', 'price' to enrich the response
+)
+
+if context.success?
+  context.result # Squake::Model::Pricing
+else
+  context.errors # [Squake::Errors::APIErrorResult]
+end
+```
+
 ### Calculate emissions and include a price quote
 
 ```ruby

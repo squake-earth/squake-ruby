@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_quantity=1000&carbon_unit=kilogram&currency=EUR&expand=%5B%5D&product=product_026c41
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer MOCK_API_KEY
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 17 Oct 2023 10:51:39 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Squake-Request-Id:
+      - req_sandbox_69d3ee29-cf28-4a36-be4a-46d8741636fa
+      Etag:
+      - W/"64117572f711f0acff7aec4c4edeb119"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - req_sandbox_69d3ee29-cf28-4a36-be4a-46d8741636fa
+      X-Runtime:
+      - '0.004210'
+      Vary:
+      - Origin
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8177fcd36d8548a7-LIS
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"eyJhbGciOiJIUzI1NiJ9.eyJwIjoicHJpY2VfWFNxTkQyIiwiY3EiOjEwMDAuMCwiY3UiOiJraWxvZ3JhbSIsInQiOjEyMzEsInRlIjoxMjMxLCJsIjoiZW4iLCJjIjoiRVVSIiwiZXhwIjoxNjk4NzQ5NDk5LCJmdCI6MCwicG0iOiJiYXRjaF9zZXR0bGVtZW50In0.I6Cb3Nl444pyDzLMFFHIukD1jKjk0giy3l-Qf6GSNMk","valid_until":"2023-10-31","carbon_quantity":1000.0,"carbon_unit":"kilogram","currency":"EUR","total":1231,"price":"price_XSqND2","product":"product_026c41"}'
+  recorded_at: Tue, 17 Oct 2023 10:51:39 GMT
+recorded_with: VCR 6.2.0

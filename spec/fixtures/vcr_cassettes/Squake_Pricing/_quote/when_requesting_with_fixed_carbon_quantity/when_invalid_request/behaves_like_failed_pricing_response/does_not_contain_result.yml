@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_quantity=1000&carbon_unit=kilogram&currency=EUR&expand=%5B%5D&product=invalid
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer MOCK_API_KEY
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Tue, 17 Oct 2023 10:51:39 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Squake-Request-Id:
+      - req_sandbox_3bb0d619-7159-4198-8067-55431322dc44
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - req_sandbox_3bb0d619-7159-4198-8067-55431322dc44
+      X-Runtime:
+      - '0.010055'
+      Vary:
+      - Origin
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8177fcd5f9e348a7-LIS
+    body:
+      encoding: UTF-8
+      string: '{"errors":[{"code":"no_price_found","detail":null,"source":null}]}'
+  recorded_at: Tue, 17 Oct 2023 10:51:39 GMT
+recorded_with: VCR 6.2.0

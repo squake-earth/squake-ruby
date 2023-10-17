@@ -5,6 +5,8 @@ require 'squake'
 require 'byebug'
 require 'vcr'
 
+Dir.glob('./spec/support/**/*.rb').each { require(_1) }
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
@@ -25,6 +27,6 @@ end
 
 SQUAKE_API_KEY = 'MOCK_API_KEY'
 def squake_client
-  config = Squake::Config.new(api_key: SQUAKE_API_KEY)
+  config = Squake::Config.new(api_key: SQUAKE_API_KEY, sandbox_mode: true)
   Squake::Client.new(config: config)
 end
