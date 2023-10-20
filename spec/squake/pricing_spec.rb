@@ -27,6 +27,32 @@ RSpec.describe Squake::Pricing, :vcr do
       end
     end
 
+    context 'when requesting with expand argument' do
+      subject(:pricing) do
+        described_class.quote(
+          client: squake_client,
+          fixed_total: 1000,
+          product_id: product_id,
+          expand: %w[product price],
+        )
+      end
+
+      it_behaves_like 'successful pricing response'
+
+      it 'returns expanded product' do
+        pricing.result.product.tap do |product|
+          expect(product).to be_a(Squake::Model::Product)
+          expect(product.id).to eq(product_id)
+        end
+      end
+
+      it 'returns expanded price' do
+        pricing.result.price.tap do |price|
+          expect(price).to be_a(Squake::Model::Price)
+        end
+      end
+    end
+
     context 'when requesting with fixed total' do
       subject(:pricing) do
         described_class.quote(
