@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_quantity=1000&carbon_unit=kilogram&currency=EUR&expand=%5B%5D&product=product_026c41
+    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_quantity=1000&carbon_unit=kilogram&currency=EUR&product=product_026c41
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 17 Oct 2023 10:51:39 GMT
+      - Fri, 20 Oct 2023 18:08:50 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,15 +37,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Squake-Request-Id:
-      - req_sandbox_c3bf3ede-21b5-4cf0-9969-7dbb35cb4b1d
+      - req_sandbox_272a2481-0ecf-4fab-9c3e-8b47f09150b8
       Etag:
-      - W/"64117572f711f0acff7aec4c4edeb119"
+      - W/"e29ea27657f336f103bddd9eaed9d79e"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - req_sandbox_c3bf3ede-21b5-4cf0-9969-7dbb35cb4b1d
+      - req_sandbox_272a2481-0ecf-4fab-9c3e-8b47f09150b8
       X-Runtime:
-      - '0.004554'
+      - '0.005656'
       Vary:
       - Origin
       Cf-Cache-Status:
@@ -53,9 +53,9 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8177fcd2ac9f48a7-LIS
+      - 819335595cab5b25-VIE
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"eyJhbGciOiJIUzI1NiJ9.eyJwIjoicHJpY2VfWFNxTkQyIiwiY3EiOjEwMDAuMCwiY3UiOiJraWxvZ3JhbSIsInQiOjEyMzEsInRlIjoxMjMxLCJsIjoiZW4iLCJjIjoiRVVSIiwiZXhwIjoxNjk4NzQ5NDk5LCJmdCI6MCwicG0iOiJiYXRjaF9zZXR0bGVtZW50In0.I6Cb3Nl444pyDzLMFFHIukD1jKjk0giy3l-Qf6GSNMk","valid_until":"2023-10-31","carbon_quantity":1000.0,"carbon_unit":"kilogram","currency":"EUR","total":1231,"price":"price_XSqND2","product":"product_026c41"}'
-  recorded_at: Tue, 17 Oct 2023 10:51:39 GMT
+      string: '{"id":"eyJhbGciOiJIUzI1NiJ9.eyJwIjoicHJpY2VfWFNxTkQyIiwiY3EiOjEwMDAuMCwiY3UiOiJraWxvZ3JhbSIsInQiOjEyMzEsInRlIjoxMjMxLCJsIjoiZW4iLCJjIjoiRVVSIiwiZXhwIjoxNjk5MDM0OTMwLCJmdCI6MCwicG0iOiJiYXRjaF9zZXR0bGVtZW50In0.sBh9eNQzC9z93gNwPAnZiMvVGDhUjiGDqi5gN7wk8KI","valid_until":"2023-11-03","carbon_quantity":1000.0,"carbon_unit":"kilogram","currency":"EUR","total":1231,"price":"price_XSqND2","product":"product_026c41"}'
+  recorded_at: Fri, 20 Oct 2023 18:08:50 GMT
 recorded_with: VCR 6.2.0
