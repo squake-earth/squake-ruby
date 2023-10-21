@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_unit=gram&currency=EUR&expand=%5B%5D&fixed_total=1000&product=product_026c41
+    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_unit=gram&currency=EUR&fixed_total=1000&product=product_026c41
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 17 Oct 2023 10:51:40 GMT
+      - Fri, 20 Oct 2023 18:08:51 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,15 +37,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Squake-Request-Id:
-      - req_sandbox_9b7cace7-06cd-4aaa-8520-7f199d53dcd4
+      - req_sandbox_dbae7955-0763-40f8-bb46-a1a035595840
       Etag:
-      - W/"124127767235b3a18e00acb81d6ec495"
+      - W/"ecfd1a268cf4bcb0059f3bfd08e81514"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - req_sandbox_9b7cace7-06cd-4aaa-8520-7f199d53dcd4
+      - req_sandbox_dbae7955-0763-40f8-bb46-a1a035595840
       X-Runtime:
-      - '0.004271'
+      - '0.005069'
       Vary:
       - Origin
       Cf-Cache-Status:
@@ -53,9 +53,9 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8177fcd6db7248a7-LIS
+      - 819335628e445b25-VIE
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"eyJhbGciOiJIUzI1NiJ9.eyJwIjoicHJpY2VfWFNxTkQyIiwiY3EiOjgxMjM0OCwiY3UiOiJncmFtIiwidCI6MTAwMCwidGUiOjEwMDAsImwiOiJlbiIsImMiOiJFVVIiLCJleHAiOjE2OTg3NDk1MDAsImZ0IjoxLCJwbSI6ImJhdGNoX3NldHRsZW1lbnQifQ.Ox_yHFHPXvIY7JTcJVEhBfBiJ6CwOxgtfukL5-B3zwk","valid_until":"2023-10-31","carbon_quantity":812348,"carbon_unit":"gram","currency":"EUR","total":1000,"price":"price_XSqND2","product":"product_026c41"}'
-  recorded_at: Tue, 17 Oct 2023 10:51:39 GMT
+      string: '{"id":"eyJhbGciOiJIUzI1NiJ9.eyJwIjoicHJpY2VfWFNxTkQyIiwiY3EiOjgxMjM0OCwiY3UiOiJncmFtIiwidCI6MTAwMCwidGUiOjEwMDAsImwiOiJlbiIsImMiOiJFVVIiLCJleHAiOjE2OTkwMzQ5MzEsImZ0IjoxLCJwbSI6ImJhdGNoX3NldHRsZW1lbnQifQ.INOih7UYBoQ_92RHcH4cO1JXqpjrgkX3clzwt98iPYI","valid_until":"2023-11-03","carbon_quantity":812348,"carbon_unit":"gram","currency":"EUR","total":1000,"price":"price_XSqND2","product":"product_026c41"}'
+  recorded_at: Fri, 20 Oct 2023 18:08:51 GMT
 recorded_with: VCR 6.2.0

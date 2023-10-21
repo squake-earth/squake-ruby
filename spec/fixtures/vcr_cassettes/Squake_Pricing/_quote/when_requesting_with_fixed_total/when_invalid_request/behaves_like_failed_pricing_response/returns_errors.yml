@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_unit=gram&currency=EUR&expand=%5B%5D&fixed_total=1000&product=invalid
+    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_unit=gram&currency=EUR&fixed_total=1000&product=invalid
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Tue, 17 Oct 2023 10:51:40 GMT
+      - Fri, 20 Oct 2023 18:08:52 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,13 +37,13 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Squake-Request-Id:
-      - req_sandbox_db29992f-4875-4963-8800-f315b6b25601
+      - req_sandbox_f69fe6b9-823b-4634-a1db-6018db6e7315
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - req_sandbox_db29992f-4875-4963-8800-f315b6b25601
+      - req_sandbox_f69fe6b9-823b-4634-a1db-6018db6e7315
       X-Runtime:
-      - '0.008148'
+      - '0.008214'
       Vary:
       - Origin
       Cf-Cache-Status:
@@ -51,9 +51,9 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8177fcd90edf48a7-LIS
+      - 819335654b015b25-VIE
     body:
       encoding: UTF-8
       string: '{"errors":[{"code":"no_price_found","detail":null,"source":null}]}'
-  recorded_at: Tue, 17 Oct 2023 10:51:40 GMT
+  recorded_at: Fri, 20 Oct 2023 18:08:52 GMT
 recorded_with: VCR 6.2.0

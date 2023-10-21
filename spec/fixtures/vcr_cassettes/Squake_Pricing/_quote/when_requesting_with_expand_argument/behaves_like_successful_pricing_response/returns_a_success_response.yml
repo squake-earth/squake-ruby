@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_unit=gram&currency=EUR&expand%5B%5D=price&expand%5B%5D=product&fixed_total=1000&product=product_026c41
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer MOCK_API_KEY
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 20 Oct 2023 18:09:40 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Squake-Request-Id:
+      - req_sandbox_24d5d402-e28f-48bd-98f5-0a2d25a85652
+      Etag:
+      - W/"19b25a82886ba869eaf81d7a2581e91b"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - req_sandbox_24d5d402-e28f-48bd-98f5-0a2d25a85652
+      X-Runtime:
+      - '0.005284'
+      Vary:
+      - Origin
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8193369439025b25-VIE
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"eyJhbGciOiJIUzI1NiJ9.eyJwIjoicHJpY2VfWFNxTkQyIiwiY3EiOjgxMjM0OCwiY3UiOiJncmFtIiwidCI6MTAwMCwidGUiOjEwMDAsImwiOiJlbiIsImMiOiJFVVIiLCJleHAiOjE2OTkwMzQ5ODAsImZ0IjoxLCJwbSI6ImJhdGNoX3NldHRsZW1lbnQifQ.7wMOzfOXuFkYXGJhdxzxcn7pBEJ1k4XR2QaOnO_aXvM","valid_until":"2023-11-03","carbon_quantity":812348,"carbon_unit":"gram","currency":"EUR","total":1000,"price":{"id":"price_XSqND2","product":"product_026c41","unit_amount":1231,"valid_from":"2023-10-16","carbon_unit":"tonne","currency":"EUR"},"product":{"id":"product_026c41","title":"Water
+        Filtration and Improved Cook Stoves in Guatemala","description":"The project
+        distributes water filters and stoves that enable access to clean water and
+        improved cooking conditions while increasing fuel efficiency and reducing
+        unhealthy air pollution. Less fuel is needed and filters make it obsolete
+        to boil water before drinking lowering the pressure on forests.","locations":[{"country":"GT"}],"categories":[{"code":"clean_water","title":"Clean
+        Water"}],"certifications":["Gold Standard VER"],"sdgs":[1,3,6,7,8,12,13,15]}}'
+  recorded_at: Fri, 20 Oct 2023 18:09:40 GMT
+recorded_with: VCR 6.2.0

@@ -9,10 +9,15 @@ module Squake
     # parameters in a URI or as form parameters in a request body. This mainly
     # involves escaping special characters from parameter keys and values (e.g.
     # `&`).
-    sig { params(params: T::Hash[Symbol, String]).returns(String) }
+    sig { params(params: T::Hash[Symbol, T.any(String, T::Array[String])]).returns(String) }
     def self.encode_parameters(params)
       params.map do |k, v|
-        "#{url_encode(k.to_s)}=#{url_encode(v.to_s)}" unless v.nil?
+        case v
+        when Array
+          v.map { |e| "#{url_encode(k.to_s)}[]=#{url_encode(e.to_s)}" }.join('&')
+        else
+          "#{url_encode(k.to_s)}=#{url_encode(v.to_s)}" unless v.nil?
+        end
       end.join('&')
     end
 
