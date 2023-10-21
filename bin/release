@@ -130,7 +130,7 @@ fi
 
 git checkout "$MAIN_BRANCH"
 
-echo $FINAL_MESSAGE
+echo -e $FINAL_MESSAGE
 
 echo
 
