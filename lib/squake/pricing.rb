@@ -16,13 +16,14 @@ module Squake
         carbon_quantity: T.nilable(Numeric),
         carbon_unit: T.nilable(String),
         expand: T::Array[String],
+        payment_link_return_url: T.nilable(String),
         client: Squake::Client,
         request_id: T.nilable(String),
       ).returns(Squake::Return[Squake::Model::Pricing])
     end
     def self.quote(
       product_id:, fixed_total: nil, currency: 'EUR', carbon_quantity: nil, carbon_unit: 'gram',
-      expand: [], client: Squake::Client.new, request_id: nil
+      expand: [], payment_link_return_url: nil, client: Squake::Client.new, request_id: nil
     )
 
       result = client.call(
@@ -36,6 +37,7 @@ module Squake
           carbon_quantity: carbon_quantity,
           carbon_unit: carbon_unit,
           expand: expand,
+          payment_link_return_url: payment_link_return_url,
         },
       )
 

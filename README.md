@@ -123,11 +123,12 @@ end
 
 ```ruby
 Squake::Pricing.quote(
-  client: squake_client, # optional
-  carbon_quantity: 1000, # required
-  carbon_unit: 'kilogram', # optional, default: 'gram', other options: 'kilogram', 'tonne'
-  product_id: 'some_product_id', # required
-  expand: [], # optional, default: [], allowed values: 'product', 'price' to enrich the response
+  client: squake_client,                           # optional
+  carbon_quantity: 1000,                           # required
+  carbon_unit: 'kilogram',                         # optional, default: 'gram', other options: 'kilogram', 'tonne'
+  product_id: 'some_product_id',                   # required
+  expand: [],                                      # optional, default: [], allowed values: 'product', 'price' to enrich the response
+  payment_link_return_url: 'https://squake.earth', # optional, default: nil
 )
 
 if context.success?
@@ -164,8 +165,8 @@ context = Squake::CalculationWithPricing.quote(
   currency: 'EUR',                                 # optional, default: 'EUR'
   carbon_unit: 'gram',                             # optional, default: 'gram', other options: 'kilogram', 'tonne'
   expand: [],                                      # optional, default: [], allowed values: 'items', 'product', 'price' to enrich the response
-  client: client,                                  # optional
   payment_link_return_url: 'https://squake.earth', # optional, default: nil
+  client: client,                                  # optional
 )
 
 if context.success?
