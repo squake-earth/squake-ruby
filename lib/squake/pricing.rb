@@ -21,7 +21,7 @@ module Squake
         request_id: T.nilable(String),
       ).returns(Squake::Return[Squake::Model::Pricing])
     end
-    def self.quote(
+    def self.quote( # rubocop:disable Metrics/ParameterLists
       product_id:, fixed_total: nil, currency: 'EUR', carbon_quantity: nil, carbon_unit: 'gram',
       expand: [], payment_link_return_url: nil, client: Squake::Client.new, request_id: nil
     )
