@@ -5,14 +5,21 @@ require 'sorbet-runtime'
 require 'oj'
 require 'net/http'
 
-Oj.default_options = {
-  mode: :compat, # required to dump hashes with symbol-keys
-  symbol_keys: true,
-}
-
 Dir[File.join(__dir__, './**/*', '*.rb')].each { require(_1) }
 
 module Squake
+  # Don't freeze this constant, since we don't know what Oj is doing with the object under the hood
+  # Don't set this as global Oj settings to avoid bleeding into other apps that build on this gem
+  # rubocop:disable Style/MutableConstant
+  OJ_CONFIG = T.let(
+    {
+      mode: :compat, # required to dump hashes with symbol-keys
+      symbol_keys: true,
+    },
+    T::Hash[Symbol, T.untyped],
+  )
+  # rubocop:enable Style/MutableConstant
+
   class << self
     extend T::Sig
 
