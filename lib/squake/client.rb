@@ -68,7 +68,7 @@ module Squake
 
       headers = request_headers(api_key).merge!(headers)
       query = query_params ? Util.encode_parameters(query_params) : nil
-      body = body_params ? ::Oj.dump(body_params) : nil
+      body = body_params ? ::Oj.dump(body_params, Squake::OJ_CONFIG) : nil
       sanitized_path = path[0] == '/' ? path : "/#{path}"
       uri = URI.parse(api_base + sanitized_path)
 
@@ -93,6 +93,7 @@ module Squake
           'http.route': request.path,
           'http.headers': request.to_hash,
         },
+        Squake::OJ_CONFIG,
       )
       canonical_request_line.gsub!(api_key, 'API_KEY_REDACTED')
       @config.logger.info(canonical_request_line)
@@ -118,7 +119,7 @@ module Squake
 
     sig { params(result_body: T.untyped).returns(JsonResponseBody) }
     private def try_parse_json(result_body)
-      ::Oj.load(result_body, symbol_keys: true)
+      ::Oj.load(result_body, Squake::OJ_CONFIG)
     rescue ::Oj::ParseError, TypeError, JSON::ParserError, EncodingError => e
       # in case of an error, Squake's response body is HTML not JSON
       { error: { 'message' => e.message, 'body' => result_body } }

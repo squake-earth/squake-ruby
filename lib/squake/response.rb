@@ -36,7 +36,7 @@ module Squake
       <<~TXT
         Failed Request
           http_code=#{code}
-          body=#{::Oj.dump(body)}
+          body=#{::Oj.dump(body, Squake::OJ_CONFIG)}
           original_request_http_method=#{original_request.method}
           original_request_http_path=#{original_request.path}
       TXT
