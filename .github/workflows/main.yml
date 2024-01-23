@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: ${{ matrix.ruby }}
     strategy:
+      fail-fast: false
       matrix:
         ruby:
           - '2.7'
