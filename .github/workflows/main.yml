@@ -26,9 +26,13 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
+
     - name: Lint with RuboCop
       run: bundle exec rubocop --parallel --ignore-unrecognized-cops
+
     - name: Type check with Sorbet
       run: bundle exec spoom tc
+
     - name: Run tests with RSpec
+      if: '!cancelled()'
       run: bundle exec rspec
