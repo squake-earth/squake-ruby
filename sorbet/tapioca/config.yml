@@ -3,6 +3,8 @@ gem:
   #
   exclude:
   - rbi
+  - base64
+  - prism
   - tapioca
   - rubocop
   - rubocop-ast

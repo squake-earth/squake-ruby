@@ -3,6 +3,7 @@
 
 require 'squake'
 require 'byebug'
+require 'base64' # subdependency of VCR, removed in Ruby 3.4
 require 'vcr'
 
 Dir.glob('./spec/support/**/*.rb').each { require(_1) }
