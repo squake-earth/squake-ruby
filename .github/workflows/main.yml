@@ -23,6 +23,9 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
 
+    - name: Bundle Install
+      run: bundle install
+
     - name: Lint with RuboCop
       run: bundle exec rubocop --parallel --ignore-unrecognized-cops
 
