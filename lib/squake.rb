@@ -5,7 +5,7 @@ require 'sorbet-runtime'
 require 'oj'
 require 'net/http'
 
-Dir[File.join(__dir__, './**/*', '*.rb')].each { require(_1) }
+Dir[File.join(__dir__, './**/*', '*.rb')].each { |file_path| require(file_path) }
 
 module Squake
   # Don't freeze this constant, since we don't know what Oj is doing with the object under the hood
