@@ -3,6 +3,7 @@
 
 require 'sorbet-runtime'
 require 'oj'
+require 'uri'
 require 'net/http'
 
 Dir[File.join(__dir__, './**/*', '*.rb')].each { |file_path| require(file_path) }

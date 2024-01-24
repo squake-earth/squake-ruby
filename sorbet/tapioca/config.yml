@@ -1,8 +1,19 @@
 gem:
   # Add your `gem` command parameters here:
   #
-  # exclude:
-  # - gem_name
+  exclude:
+  - rbi
+  - tapioca
+  - rubocop
+  - rubocop-ast
+  - rubocop-capybara
+  - rubocop-dbl
+  - rubocop-factory_bot
+  - rubocop-packaging
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-sorbet
   # doc: true
   # workers: 5
 dsl:
