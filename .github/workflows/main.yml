@@ -48,4 +48,4 @@ jobs:
 
     - name: Run tests with RSpec
       if: '!cancelled()'
-      run: bundle exec rspec
+      run: bundle exec appraisal rspec
