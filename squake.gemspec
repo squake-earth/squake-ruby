@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'net-http'
   spec.add_dependency 'oj'
   spec.add_dependency 'sorbet-runtime'
+  spec.add_dependency 'uri'
 
   spec.add_development_dependency 'byebug'
   spec.add_development_dependency 'rspec'
