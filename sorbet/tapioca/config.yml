@@ -3,6 +3,7 @@ gem:
   #
   exclude:
   - rbi
+  - appraisal
   - tapioca
   - rubocop
   - rubocop-ast
