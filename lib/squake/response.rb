@@ -1,7 +1,7 @@
 # typed: strict
 # frozen_string_literal: true
 
-require 'squake/client'
+require_relative 'client'
 require 'oj'
 
 module Squake
