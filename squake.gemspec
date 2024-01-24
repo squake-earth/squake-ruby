@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sorbet-runtime'
   spec.add_dependency 'uri'
 
+  spec.add_development_dependency 'base64' # removed in Ruby 3.4, subdependency of VCR
   spec.add_development_dependency 'byebug'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop-dbl'
