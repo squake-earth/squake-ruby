@@ -18,19 +18,19 @@ jobs:
         gemfile:
           - gemfiles/uri_0.10.0.2.gemfile
           - gemfiles/uri_0.13.gemfile
-        include:
+        exclude:
           - ruby: '2.7'
-            gemfile: gemfiles/uri_0.10.0.2.gemfile
+            gemfile: gemfiles/uri_0.13.gemfile
           - ruby: '3.0'
-            gemfile: gemfiles/uri_0.13.gemfile
+            gemfile: gemfiles/uri_0.10.0.2.gemfile
           - ruby: '3.1'
-            gemfile: gemfiles/uri_0.13.gemfile
+            gemfile: gemfiles/uri_0.10.0.2.gemfile
           - ruby: '3.2'
-            gemfile: gemfiles/uri_0.13.gemfile
+            gemfile: gemfiles/uri_0.10.0.2.gemfile
           - ruby: '3.3'
-            gemfile: gemfiles/uri_0.13.gemfile
+            gemfile: gemfiles/uri_0.10.0.2.gemfile
           - ruby: 'head'
-            gemfile: gemfiles/uri_0.13.gemfile
+            gemfile: gemfiles/uri_0.10.0.2.gemfile
 
     steps:
     - uses: actions/checkout@v4
