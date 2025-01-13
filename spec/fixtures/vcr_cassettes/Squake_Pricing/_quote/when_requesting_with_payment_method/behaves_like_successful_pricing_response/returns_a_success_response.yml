@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.sandbox.squake.earth/v2/pricing?carbon_unit=gram&currency=EUR&fixed_total=1000&payment_method=stripe&product=product_N7TnHY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer MOCK_API_KEY
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 13 Jan 2025 11:36:54 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - W/"b340217520cee10f56b86b7f61aba95a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Squake-Request-Id:
+      - req_sandbox_92231cb7-283d-4b88-92eb-f3df607b631b
+      X-Request-Id:
+      - req_sandbox_92231cb7-283d-4b88-92eb-f3df607b631b
+      X-Runtime:
+      - '0.007111'
+      Vary:
+      - Origin
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 901517599e74e298-BEG
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"eyJhbGciOiJIUzI1NiJ9.eyJwIjoicHJpY2VfeThnalpZIiwiY3EiOjg4NzQyLCJjdSI6ImdyYW0iLCJ0IjoxMDAwLCJ0ZSI6MTAwMCwibCI6ImVuIiwiYyI6IkVVUiIsImV4cCI6MTczNzk3NzgxNCwiZnQiOjEsInBtIjoic3RyaXBlIn0.iLDkhWK1BWpAJGSzzGwgMizOWdNJj_obVGwbjayMgF8","valid_until":"2025-01-27","carbon_quantity":88742,"carbon_unit":"gram","currency":"EUR","total":1000,"price":"price_y8gjZY","product":"product_N7TnHY","payment_link":"https://checkout.sandbox.squake.earth?t=eyJhbGciOiJIUzI1NiJ9.eyJwIjoicHJpY2VfeThnalpZIiwiY3EiOjg4NzQyLCJjdSI6ImdyYW0iLCJ0IjoxMDAwLCJ0ZSI6MTAwMCwibCI6ImVuIiwiYyI6IkVVUiIsImV4cCI6MTczNzk3NzgxNCwiZnQiOjEsInBtIjoic3RyaXBlIn0.iLDkhWK1BWpAJGSzzGwgMizOWdNJj_obVGwbjayMgF8"}'
+  recorded_at: Mon, 13 Jan 2025 11:36:53 GMT
+recorded_with: VCR 6.2.0
