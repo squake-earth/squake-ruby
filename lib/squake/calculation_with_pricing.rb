@@ -16,13 +16,14 @@ module Squake
         carbon_unit: String,
         expand: T::Array[String],
         payment_link_return_url: T.nilable(String),
+        payment_method: T.nilable(Squake::Model::PaymentMethod),
         client: Squake::Client,
         request_id: T.nilable(String),
       ).returns(Squake::Return[Squake::Model::Pricing])
     end
     def self.quote(
       items:, product:, currency: 'EUR', carbon_unit: 'gram',
-      expand: [], payment_link_return_url: nil, client: Squake::Client.new, request_id: nil
+      expand: [], payment_method: nil, payment_link_return_url: nil, client: Squake::Client.new, request_id: nil
     )
       # @TODO: add typed objects for all possible items. Until then, we allow either a Hash or a T::Struct
       items = items.map do |item|
@@ -40,6 +41,7 @@ module Squake
           carbon_unit: carbon_unit,
           expand: expand,
           payment_link_return_url: payment_link_return_url,
+          payment_method: payment_method.serialize,
         },
       )
 
