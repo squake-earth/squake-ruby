@@ -23,7 +23,8 @@ module Squake
     end
     def self.quote(
       items:, product:, currency: 'EUR', carbon_unit: 'gram',
-      expand: [], payment_method: nil, payment_link_return_url: nil, client: Squake::Client.new, request_id: nil
+      expand: [], payment_method: nil, payment_link_return_url: nil,
+      client: Squake::Client.new, request_id: nil
     )
       # @TODO: add typed objects for all possible items. Until then, we allow either a Hash or a T::Struct
       items = items.map do |item|

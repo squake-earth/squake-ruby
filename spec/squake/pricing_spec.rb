@@ -74,8 +74,6 @@ RSpec.describe Squake::Pricing, :vcr do
     end
 
     context 'when requesting with payment method' do
-      let(:product_id) { 'product_N7TnHY' }
-
       subject(:pricing) do
         described_class.quote(
           client: squake_client,
@@ -84,6 +82,8 @@ RSpec.describe Squake::Pricing, :vcr do
           fixed_total: 1000,
         )
       end
+
+      let(:product_id) { 'product_N7TnHY' }
 
       it_behaves_like 'successful pricing response'
 
@@ -94,4 +94,3 @@ RSpec.describe Squake::Pricing, :vcr do
     end
   end
 end
-

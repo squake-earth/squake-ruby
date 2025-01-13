@@ -50,4 +50,4 @@ Metrics/MethodLength:
   CountAsOne: ['array', 'heredoc', 'method_call']
 
 Metrics/ParameterLists:
-  Max: 8
+  Max: 10

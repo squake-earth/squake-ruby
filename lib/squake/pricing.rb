@@ -22,11 +22,11 @@ module Squake
         request_id: T.nilable(String),
       ).returns(Squake::Return[Squake::Model::Pricing])
     end
-    def self.quote( # rubocop:disable Metrics/ParameterLists
+    def self.quote(
       product_id:, fixed_total: nil, currency: 'EUR', carbon_quantity: nil, carbon_unit: 'gram',
-      expand: [], payment_link_return_url: nil, payment_method: nil, client: Squake::Client.new, request_id: nil
+      expand: [], payment_link_return_url: nil, payment_method: nil,
+      client: Squake::Client.new, request_id: nil
     )
-
       result = client.call(
         path: ENDPOINT,
         method: :get,
