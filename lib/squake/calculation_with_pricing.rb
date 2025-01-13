@@ -23,7 +23,7 @@ module Squake
     end
     def self.quote(
       items:, product:, currency: 'EUR', carbon_unit: 'gram',
-      expand: [], payment_method: nil, payment_link_return_url: nil,
+      expand: [], payment_link_return_url: nil, payment_method: nil,
       client: Squake::Client.new, request_id: nil
     )
       # @TODO: add typed objects for all possible items. Until then, we allow either a Hash or a T::Struct
@@ -42,7 +42,7 @@ module Squake
           carbon_unit: carbon_unit,
           expand: expand,
           payment_link_return_url: payment_link_return_url,
-          payment_method: payment_method.serialize,
+          payment_method: payment_method&.serialize,
         },
       )
 
