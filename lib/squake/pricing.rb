@@ -17,15 +17,16 @@ module Squake
         carbon_unit: T.nilable(String),
         expand: T::Array[String],
         payment_link_return_url: T.nilable(String),
+        payment_method: T.nilable(Squake::Model::PaymentMethod),
         client: Squake::Client,
         request_id: T.nilable(String),
       ).returns(Squake::Return[Squake::Model::Pricing])
     end
-    def self.quote( # rubocop:disable Metrics/ParameterLists
+    def self.quote(
       product_id:, fixed_total: nil, currency: 'EUR', carbon_quantity: nil, carbon_unit: 'gram',
-      expand: [], payment_link_return_url: nil, client: Squake::Client.new, request_id: nil
+      expand: [], payment_link_return_url: nil, payment_method: nil,
+      client: Squake::Client.new, request_id: nil
     )
-
       result = client.call(
         path: ENDPOINT,
         method: :get,
@@ -38,6 +39,7 @@ module Squake
           carbon_unit: carbon_unit,
           expand: expand,
           payment_link_return_url: payment_link_return_url,
+          payment_method: payment_method&.serialize,
         },
       )
 

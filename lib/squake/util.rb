@@ -14,11 +14,11 @@ module Squake
       params.map do |k, v|
         case v
         when Array
-          v.map { |e| "#{url_encode(k.to_s)}[]=#{url_encode(e.to_s)}" }.join('&')
+          v.map { "#{url_encode(k.to_s)}[]=#{url_encode(_1.to_s)}" }
         else
           "#{url_encode(k.to_s)}=#{url_encode(v.to_s)}" unless v.nil?
         end
-      end.join('&')
+      end.flatten.compact.join('&')
     end
 
     # Encodes a string in a way that makes it suitable for use in a set of

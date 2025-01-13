@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name                  = 'squake'
   spec.version               = Squake::VERSION
   spec.summary               = 'The industry solution for sustainable travel and logistics.'
-  spec.description           = 'This gem provides an interface for the SQUAKE API to calculate and compensate carbon emissions.' # rubocop:disable Layout/LineLength
+  spec.description           = 'This gem provides an interface for the SQUAKE API to calculate and compensate carbon emissions.'
   spec.author                = 'SQUAKE'
   spec.email                 = 'oss@squake.earth'
   spec.files                 = Dir[
@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'base64' # removed in Ruby 3.4, subdependency of VCR
   spec.add_development_dependency 'byebug'
+  spec.add_development_dependency 'logger'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop-dbl'
   spec.add_development_dependency 'spoom'

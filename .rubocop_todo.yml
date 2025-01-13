@@ -10,6 +10,11 @@
 # Configuration parameters: EnforcedStyle, AllowedGems, Include.
 # SupportedStyles: Gemfile, gems.rb, gemspec
 # Include: **/*.gemspec, **/Gemfile, **/gems.rb
+AllCops:
+  Exclude:
+    - 'squake.gemspec'
+    - 'bin/**/*'
+
 Gemspec/DevelopmentDependencies:
   Exclude:
     - 'squake.gemspec'

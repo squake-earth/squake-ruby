@@ -72,5 +72,25 @@ RSpec.describe Squake::Pricing, :vcr do
         it_behaves_like 'failed pricing response'
       end
     end
+
+    context 'when requesting with payment method' do
+      subject(:pricing) do
+        described_class.quote(
+          client: squake_client,
+          product_id: product_id,
+          payment_method: Squake::Model::PaymentMethod::Stripe,
+          fixed_total: 1000,
+        )
+      end
+
+      let(:product_id) { 'product_N7TnHY' }
+
+      it_behaves_like 'successful pricing response'
+
+      it 'contains payment link' do
+        expect(pricing.result.payment_link).to be_a(String)
+        expect(pricing.result.payment_link).to include('checkout.sandbox.squake.earth')
+      end
+    end
   end
 end
